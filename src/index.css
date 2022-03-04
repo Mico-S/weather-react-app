@@ -80,16 +80,17 @@ h1 {
 
 /* Styling for each of the div classes in app */
 .app .top {
+  text-align: center;
   width: 100%;
   margin: 1rem auto;
 }
 
-.app .description {
+/* .app .description {
   position: relative;
   right: -90%;
   transform-origin: 0 0;
   transform: rotate(270deg)
-}
+} */
 
 .app .bottom {
   display: flex;

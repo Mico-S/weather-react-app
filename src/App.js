@@ -9,7 +9,7 @@ function App() {
 
   // OpenWeatherMap API request URL
   // Parameters: city, API key
-  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=c02bacfef72fca3b23d3c402e65dc9f7`
+  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=c02bacfef72fca3b23d3c402e65dc9f7`
 
   const searchLocation = (event) => {
     if (event.key === 'Enter') {
@@ -35,29 +35,36 @@ function App() {
       <div className="container">
         <div className="top">
           <div className="location">
-            <p>{data.name}</p>
+            {/* x ? y : z 
+            Essentially an inline if-statement, read as
+            if x, then y, else z (good to know)*/}
+            {data.name ? <p>{data.name}, {data.sys.country}</p> : <p>Enter a location!</p>}
           </div>
           <div className="temp">
-            <h1>65 F</h1>
+            {data.main ? <h1>{data.main.temp.toFixed(1)} °F</h1> : null}
           </div>
           <div className="description">
-            <p>Clear Skies</p>
+            {data.weather ? <p>{data.weather[0].main}</p> : null}
           </div>
         </div>
-        <div className="bottom">
-          <div className="feels">
-            <p className="bold">72 deg F</p>
-            <p>Feels Like</p>
+
+        {/* If there is a given name, display the bottom box*/}
+        {data.name !== undefined &&
+          <div className="bottom">
+            <div className="feels">
+              {data.main ? <p className="bold">{data.main.feels_like.toFixed(1)} °F</p> : null}
+              <p>Feels Like</p>
+            </div>
+            <div className="humidity">
+              {data.main ? <p className="bold">{data.main.humidity}%</p> : null}
+              <p>Humidity</p>
+            </div>
+            <div className="wind">
+              {data.wind ? <p className="bold">{data.wind.speed.toFixed(1)} MPH</p> : null}
+              <p>Wind Speed</p>
+            </div>
           </div>
-          <div className="humidity">
-            <p className="bold">15%</p>
-            <p>Humidity</p>
-          </div>
-          <div className="wind">
-            <p className="bold">5 MPH</p>
-            <p>Wind Speed</p>
-          </div>
-        </div>
+        }
       </div>
     </div>
   );
