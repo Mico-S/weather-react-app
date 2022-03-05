@@ -67,8 +67,8 @@ app.post('/weather', async function(req, res) {
     //   url: `https://api.openweathermap.org/data/2.5/weather?q=${encodedLocation}&units=imperial&appid=${secretObj}`
     // })
 
-    apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${encodedLocation}&units=imperial&appid=${secretObj}`
-
+    apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${encodedLocation}&units=imperial&appid=${secretObj["openweathermap"]}`
+    
     const data = await axios.get(apiUrl)
     
     // Return weather data
