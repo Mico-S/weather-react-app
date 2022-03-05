@@ -25,7 +25,7 @@ app.use(awsServerlessExpressMiddleware.eventContext())
 // Enable CORS for all methods
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*")
-  res.header("Access-Control-Allow-Headers", "*")
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
   next()
 });
 
@@ -50,7 +50,7 @@ app.use(function(req, res, next) {
 * and the GET reqeust to OpenWeatherMap is created, fired, and the data is returned back to the page
 ****************************/
 
-app.post('/weather', function(req, res) {
+app.post('/weather', async function(req, res) {
   // Obtain the given location from the request.body
   const { location } = req.body
 
