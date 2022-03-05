@@ -62,10 +62,14 @@ app.post('/weather', function(req, res) {
     const secretObj = await secret()
 
     // Call OpenWeatherMap API
-    const { data } = await axios({
-      method: 'GET',
-      url: `https://api.openweathermap.org/data/2.5/weather?q=${encodedLocation}&units=imperial&appid=${secretObj}`
-    })
+    // const { data } = await axios({
+    //   method: 'GET',
+    //   url: `https://api.openweathermap.org/data/2.5/weather?q=${encodedLocation}&units=imperial&appid=${secretObj}`
+    // })
+
+    apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${encodedLocation}&units=imperial&appid=${secretObj}`
+
+    const data = await axios.get(apiUrl)
     
     // Return weather data
     print(data)
