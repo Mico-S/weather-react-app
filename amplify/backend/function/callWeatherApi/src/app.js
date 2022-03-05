@@ -68,7 +68,7 @@ app.post('/weather', function(req, res) {
     })
     
     // Return weather data
-    print(data) 
+    print(data)
     return res.send(data)
   } catch (e) {
     console.log(e)
