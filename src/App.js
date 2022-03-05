@@ -17,6 +17,13 @@ function App() {
     //   setLocation('')
     // }
 
+    // Create the request body
+    const myInit = {
+      body: {
+        location
+      },
+    };
+
     // New AWS Amplify API call
     if (event.key === 'Enter') {
       API.post('weatherAPI', '/weather', myInit)
@@ -27,6 +34,7 @@ function App() {
         .catch (e => {
           console.log(e)
         })
+      setLocation('')
     }
   }
 
