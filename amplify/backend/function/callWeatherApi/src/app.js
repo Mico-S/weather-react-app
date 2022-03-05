@@ -69,11 +69,12 @@ app.post('/weather', async function(req, res) {
 
     apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${encodedLocation}&units=imperial&appid=${secretObj["openweathermap"]}`
     
-    const weatherData = await axios.get(apiUrl)
+    const apiResponse = await axios.get(apiUrl)
     
     // Return weather data
-    console.log(weatherData)
-    return res.send(weatherData)
+    console.log(apiResponse.data)
+    
+    return res.send(apiResponse.data)
   } catch (e) {
     console.log(e)
     return res.status(500).send('Error.')
