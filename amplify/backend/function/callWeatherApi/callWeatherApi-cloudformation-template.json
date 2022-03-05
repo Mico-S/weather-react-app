@@ -136,7 +136,7 @@
                                 "secretsmanager:GetSecretValue"
                             ],
                             "Resource": {
-                                "Fn:Sub": [
+                                "Fn::Sub": [
                                     "arn:aws:secretsmanager:us-west-1:683624737330:secret:openweathermap-HsaOFt",
                                     {
                                         "region": {
