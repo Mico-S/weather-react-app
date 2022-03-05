@@ -72,7 +72,7 @@ app.post('/weather', async function(req, res) {
     const data = await axios.get(apiUrl)
     
     // Return weather data
-    print(data)
+    console.log(data)
     return res.send(data)
   } catch (e) {
     console.log(e)
