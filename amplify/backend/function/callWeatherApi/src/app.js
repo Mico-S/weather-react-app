@@ -67,8 +67,9 @@ app.post('/weather', function(req, res) {
       url: `https://api.openweathermap.org/data/2.5/weather?q=${encodedLocation}&units=imperial&appid=${secretObj}`
     })
     
-    // Return weather data 
-    return res.send(data.data)
+    // Return weather data
+    print(data) 
+    return res.send(data)
   } catch (e) {
     console.log(e)
     return res.status(500).send('Error.')
