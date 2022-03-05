@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import axios from 'axios'
+import React, {useState} from 'react';
+import { API } from 'aws-amplify';
 
 function App() {
   // Initializing our state and setState variables for our weather
@@ -7,17 +7,26 @@ function App() {
   const [data,setData] = useState({})
   const [location, setLocation] = useState('')
 
-  // OpenWeatherMap API request URL
-  // Parameters: city, API key
-  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=c02bacfef72fca3b23d3c402e65dc9f7`
-
   const searchLocation = (event) => {
+    // Old API call
+    // if (event.key === 'Enter') {
+    //   axios.get(apiUrl).then((response) => {
+    //     setData(response.data)
+    //     console.log(response.data)
+    //   })
+    //   setLocation('')
+    // }
+
+    // New AWS Amplify API call
     if (event.key === 'Enter') {
-      axios.get(apiUrl).then((response) => {
-        setData(response.data)
-        console.log(response.data)
-      })
-      setLocation('')
+      API.post('weatherAPI', '/weather', myInit)
+        .then((data) => {
+          setData(data)
+          console.log(data)
+        })
+        .catch (e => {
+          console.log(e)
+        })
     }
   }
 
